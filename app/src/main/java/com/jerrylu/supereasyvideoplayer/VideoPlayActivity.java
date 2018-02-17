@@ -1,6 +1,7 @@
 package com.jerrylu.supereasyvideoplayer;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import java.util.List;
 public class VideoPlayActivity extends AppCompatActivity {
 
     private VideoView videoView;
+    private List<File> files;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +33,15 @@ public class VideoPlayActivity extends AppCompatActivity {
 
         // get video path and play
         if(videoView == null){
+            videoView = (VideoView)findViewById(R.id.video1);
+
             Intent getIntent = getIntent();
             String file = getIntent.getStringExtra("url");
             String folder = file.substring(0,file.lastIndexOf('/'));
             Log.i("folder",folder);
             File folderFile = new File(folder);
-            List<File> files = getFileList(folderFile);
-            videoView = (VideoView)findViewById(R.id.video1);
-            videoView.setVideoURI(Uri.parse(file));
+            files = getFileList(folderFile);
+            videoView.setVideoURI(Uri.parse(files.get(0).getPath()));
             videoView.setMediaController(new MediaController(this));
         }
 
@@ -46,6 +49,23 @@ public class VideoPlayActivity extends AppCompatActivity {
             videoView.seekTo(savedInstanceState.getInt("currentPos"));
         }
         videoView.start();
+
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                if(files.size()>1){
+                    Log.i("play","ready to play next");
+                    files.remove(0);
+                    videoView.setVideoURI(Uri.parse(files.get(0).getPath()));
+                    Log.i("play",files.get(0).getPath());
+                    videoView.start();
+                } else {
+                    Toast.makeText(VideoPlayActivity.this,"Play Ended!",Toast.LENGTH_SHORT);
+                    Log.i("play","PlayENDED!");
+                }
+
+            }
+        });
     }
 
     @Override
