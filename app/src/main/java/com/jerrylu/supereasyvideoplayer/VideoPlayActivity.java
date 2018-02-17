@@ -1,6 +1,8 @@
 package com.jerrylu.supereasyvideoplayer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -20,7 +22,7 @@ import java.util.List;
 public class VideoPlayActivity extends AppCompatActivity {
 
     private VideoView videoView;
-    private List<File> files;
+    private List<File> fileInFolder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +38,9 @@ public class VideoPlayActivity extends AppCompatActivity {
             videoView = (VideoView)findViewById(R.id.video1);
 
             Intent getIntent = getIntent();
-            String file = getIntent.getStringExtra("url");
-            String folder = file.substring(0,file.lastIndexOf('/'));
-            Log.i("folder",folder);
-            File folderFile = new File(folder);
-            files = getFileList(folderFile);
-            videoView.setVideoURI(Uri.parse(files.get(0).getPath()));
+            fileInFolder = (List<File>) getIntent.getSerializableExtra("fileList");
+
+            videoView.setVideoURI(Uri.parse(fileInFolder.get(0).getPath()));
             videoView.setMediaController(new MediaController(this));
         }
 
@@ -53,15 +52,12 @@ public class VideoPlayActivity extends AppCompatActivity {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                if(files.size()>1){
-                    Log.i("play","ready to play next");
-                    files.remove(0);
-                    videoView.setVideoURI(Uri.parse(files.get(0).getPath()));
-                    Log.i("play",files.get(0).getPath());
+                if(fileInFolder.size()>1){
+                    fileInFolder.remove(0);
+                    videoView.setVideoURI(Uri.parse(fileInFolder.get(0).getPath()));
                     videoView.start();
                 } else {
                     Toast.makeText(VideoPlayActivity.this,"Play Ended!",Toast.LENGTH_SHORT);
-                    Log.i("play","PlayENDED!");
                 }
 
             }
@@ -74,16 +70,5 @@ public class VideoPlayActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
     }
 
-    public List<File> getFileList(File fileFolder){
-        File[] fileArray = fileFolder.listFiles();
-        List<File> fileList = new ArrayList<File>();
-        for(File f:fileArray){
-            Log.i("files",f.getPath());
-            if(f.isFile()) // it is a actually file
-                fileList.add(f);
-            else // it is a folder
-                getFileList(f);
-        }
-        return fileList;
-    }
+
 }
