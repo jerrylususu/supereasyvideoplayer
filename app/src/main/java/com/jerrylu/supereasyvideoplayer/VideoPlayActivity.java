@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.MediaController;
@@ -45,16 +43,16 @@ public class VideoPlayActivity extends AppCompatActivity {
             fileInFolder = (List<File>) getIntent.getSerializableExtra("fileList");
 
             String previousFile = settings.getString("currentFile","");
-            int previousPos = Integer.parseInt(settings.getString("currentPos","38324"));
+            int previousPos = Integer.parseInt(settings.getString("currentPos","0"));
 
-            if(previousFile!=""){
+            if(!previousFile.equals("")){
                 fileInFolder = rebuildNewFileInFolderList(fileInFolder,new File(previousFile));
             }
 
             videoView.setVideoURI(Uri.parse(fileInFolder.get(0).getPath()));
 
             videoView.seekTo(previousPos);
-            Log.i("previouspos",String.valueOf(previousPos));
+//            Log.i("previouspos",String.valueOf(previousPos));
             videoView.setMediaController(new MediaController(this));
             savedInstanceState = null;
         }
@@ -72,11 +70,14 @@ public class VideoPlayActivity extends AppCompatActivity {
                     fileInFolder.remove(0);
                     videoView.setVideoURI(Uri.parse(fileInFolder.get(0).getPath()));
                     editor.putString("currentFile",fileInFolder.get(0).getPath());
-                    Log.i("putinfo",fileInFolder.get(0).getPath());
+//                    Log.i("putinfo",fileInFolder.get(0).getPath());
                     editor.commit();
                     videoView.start();
                 } else {
-                    Toast.makeText(VideoPlayActivity.this,"Play Ended!",Toast.LENGTH_SHORT);
+                    // all played
+                    Toast.makeText(VideoPlayActivity.this,getString(R.string.PlayEndInfo),Toast.LENGTH_SHORT).show();
+                    Intent backToMain = new Intent(VideoPlayActivity.this,MainActivity.class);
+                    startActivity(backToMain);
                 }
 
             }
@@ -93,7 +94,6 @@ public class VideoPlayActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         editor.putString("currentPos",String.valueOf(videoView.getCurrentPosition()));
-        Log.i("putinfo",String.valueOf(videoView.getCurrentPosition()));
         editor.commit();
     }
 
@@ -101,10 +101,10 @@ public class VideoPlayActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        int previousPos = Integer.parseInt(settings.getString("currentPos","38324"));
+        int previousPos = Integer.parseInt(settings.getString("currentPos","0"));
         videoView.seekTo(previousPos);
         videoView.start();
-        Log.i("previouspos",String.valueOf(previousPos));
+//        Log.i("previouspos",String.valueOf(previousPos));
     }
 
     public static List<File> rebuildNewFileInFolderList(List<File> fileList, File file){

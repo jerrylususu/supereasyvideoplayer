@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,6 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/MadeInfoTextWiew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/MadeInfo" />
 
         <Button
             android:id="@+id/ConfigPathBtn"
@@ -21,7 +26,7 @@
             android:id="@+id/PathTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/PathTextPlace" />
+            android:text="@string/PlaceHolder" />
 
         <TextView
             android:id="@+id/PreviousFileTextView"
@@ -39,14 +44,8 @@
         <Button
             android:id="@+id/PlayBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="@string/PlayBtnText" />
-
-        <Button
-            android:id="@+id/ContinuePlayBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ContinuePlayBtnText" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

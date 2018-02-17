@@ -6,21 +6,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.Serializable;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView PreviousPosTextView;
     private Button ConfigBtn;
     private Button PlayBtn;
-    private Button ContinuePlayBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
         ConfigBtn = (Button)findViewById(R.id.ConfigPathBtn);
         PlayBtn = (Button)findViewById(R.id.PlayBtn);
-        ContinuePlayBtn = (Button)findViewById(R.id.ContinuePlayBtn);
 
         refreshTextView();
+
+        Toast.makeText(MainActivity.this,getString(R.string.MadeInfo),Toast.LENGTH_SHORT).show();
 
         ConfigBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         PlayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fileInFolder = getFileList(new File(settings.getString("folderPath","Not set yet")));
+                fileInFolder = getFileList(new File(settings.getString("folderPath",getString(R.string.NoPathTip))));
                 Intent toVideoPlay = new Intent(MainActivity.this,VideoPlayActivity.class);
                 toVideoPlay.putExtra("fileList",(Serializable)fileInFolder);
                 startActivity(toVideoPlay);
@@ -106,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
         for(File f:fileArray){
             if(f.isFile()) // it is a actually file
                 fileList.add(f);
-            else // it is a folder
-                getFileList(f);
+//            else // it is a folder
+//                getFileList(f);
         }
         return fileList;
     }

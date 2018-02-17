@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">Super Easy Video Player</string>
-    <string name="ConfigBtnText">Config Video Path</string>
-    <string name="PathTextPlace">PlaceHolder</string>
-    <string name="PlayBtnText">Play</string>
-    <string name="ContinuePlayBtnText">Continue Play</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <!--ui-->
+    <string name="ConfigBtnText">Config Video Path</string>
+    <string name="PlaceHolder">PlaceHolder</string>
+    <string name="PlayBtnText">Play</string>
+
+    <!--tips & info-->
+    <string name="MadeInfo">Made By Jerry Lu With ❤</string>
+    <string name="NoPathTip">Path not set yet</string>
+    <string name="PlayEndInfo">Play ended!</string>
 
 </resources>
