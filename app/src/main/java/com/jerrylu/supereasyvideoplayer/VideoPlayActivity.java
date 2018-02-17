@@ -23,9 +23,13 @@ public class VideoPlayActivity extends AppCompatActivity {
 
     private VideoView videoView;
     private List<File> fileInFolder;
+    private SharedPreferences settings;
+    private SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        settings = getSharedPreferences("setting", Context.MODE_PRIVATE);
+        editor = settings.edit();
 
         // hide title bar and status bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -40,13 +44,25 @@ public class VideoPlayActivity extends AppCompatActivity {
             Intent getIntent = getIntent();
             fileInFolder = (List<File>) getIntent.getSerializableExtra("fileList");
 
+            String previousFile = settings.getString("currentFile","");
+            int previousPos = Integer.parseInt(settings.getString("currentPos","38324"));
+
+            if(previousFile!=""){
+                fileInFolder = rebuildNewFileInFolderList(fileInFolder,new File(previousFile));
+            }
+
             videoView.setVideoURI(Uri.parse(fileInFolder.get(0).getPath()));
+
+            videoView.seekTo(previousPos);
+            Log.i("previouspos",String.valueOf(previousPos));
             videoView.setMediaController(new MediaController(this));
+            savedInstanceState = null;
         }
 
         if(savedInstanceState !=null && savedInstanceState.getInt("currentPos") !=0){
             videoView.seekTo(savedInstanceState.getInt("currentPos"));
         }
+
         videoView.start();
 
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -55,6 +71,9 @@ public class VideoPlayActivity extends AppCompatActivity {
                 if(fileInFolder.size()>1){
                     fileInFolder.remove(0);
                     videoView.setVideoURI(Uri.parse(fileInFolder.get(0).getPath()));
+                    editor.putString("currentFile",fileInFolder.get(0).getPath());
+                    Log.i("putinfo",fileInFolder.get(0).getPath());
+                    editor.commit();
                     videoView.start();
                 } else {
                     Toast.makeText(VideoPlayActivity.this,"Play Ended!",Toast.LENGTH_SHORT);
@@ -68,6 +87,38 @@ public class VideoPlayActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt("currentPos",videoView.getCurrentPosition());
         super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        editor.putString("currentPos",String.valueOf(videoView.getCurrentPosition()));
+        Log.i("putinfo",String.valueOf(videoView.getCurrentPosition()));
+        editor.commit();
+    }
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        int previousPos = Integer.parseInt(settings.getString("currentPos","38324"));
+        videoView.seekTo(previousPos);
+        videoView.start();
+        Log.i("previouspos",String.valueOf(previousPos));
+    }
+
+    public static List<File> rebuildNewFileInFolderList(List<File> fileList, File file){
+        int fileNo = -1;
+        for(int i=0;i<fileList.size();i++){
+            if(fileList.get(i).getPath().equals(file.getPath())){
+                fileNo = i;
+            }
+        }
+        List<File> newList = new ArrayList<>();
+        for(int i=fileNo;i<fileList.size();i++){
+            newList.add(fileList.get(i));
+        }
+        return newList;
     }
 
 

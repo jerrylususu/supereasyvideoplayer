@@ -23,11 +23,30 @@
             android:layout_height="wrap_content"
             android:text="@string/PathTextPlace" />
 
+        <TextView
+            android:id="@+id/PreviousFileTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PreviousFile" />
+
+        <TextView
+            android:id="@+id/PreviousPosTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            tools:text="PreviousPos" />
+
         <Button
             android:id="@+id/PlayBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/PlayBtnText" />
+
+        <Button
+            android:id="@+id/ContinuePlayBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ContinuePlayBtnText" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

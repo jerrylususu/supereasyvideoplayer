@@ -31,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
     private List<File> fileInFolder;
     private SharedPreferences settings;
     private TextView PathTextView;
+    private TextView PreviousFileTextView;
+    private TextView PreviousPosTextView;
+    private Button ConfigBtn;
+    private Button PlayBtn;
+    private Button ContinuePlayBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
         settings = getSharedPreferences("setting", Context.MODE_PRIVATE);
         PathTextView = (TextView)findViewById(R.id.PathTextView);
+        PreviousFileTextView = (TextView)findViewById(R.id.PreviousFileTextView);
+        PreviousPosTextView = (TextView)findViewById(R.id.PreviousPosTextView);
 
-        Button ConfigBtn = (Button)findViewById(R.id.ConfigPathBtn);
-        Button PlayBtn = (Button)findViewById(R.id.PlayBtn);
+        ConfigBtn = (Button)findViewById(R.id.ConfigPathBtn);
+        PlayBtn = (Button)findViewById(R.id.PlayBtn);
+        ContinuePlayBtn = (Button)findViewById(R.id.ContinuePlayBtn);
 
-        PathTextView.setText(settings.getString("folderPath","Not set yet"));
+        refreshTextView();
 
         ConfigBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        refreshTextView();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == Activity.RESULT_OK){
             Uri uri = data.getData();
@@ -79,8 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
             SharedPreferences.Editor editor = settings.edit();
             editor.putString("folderPath",folderPath);
+            editor.remove("currentFile");
+            editor.remove("currentPos");
             editor.commit();
-            PathTextView.setText(settings.getString("folderPath","Not set yet"));
+            refreshTextView();
         }
     }
 
@@ -88,12 +104,17 @@ public class MainActivity extends AppCompatActivity {
         File[] fileArray = fileFolder.listFiles();
         List<File> fileList = new ArrayList<File>();
         for(File f:fileArray){
-            Log.i("files",f.getPath());
             if(f.isFile()) // it is a actually file
                 fileList.add(f);
             else // it is a folder
                 getFileList(f);
         }
         return fileList;
+    }
+
+    private void refreshTextView(){
+        PathTextView.setText(settings.getString("folderPath","Not set yet"));
+        PreviousFileTextView.setText(settings.getString("currentFile",""));
+        PreviousPosTextView.setText(settings.getString("currentPos",""));
     }
 }

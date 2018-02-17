@@ -3,6 +3,7 @@
     <string name="ConfigBtnText">Config Video Path</string>
     <string name="PathTextPlace">PlaceHolder</string>
     <string name="PlayBtnText">Play</string>
+    <string name="ContinuePlayBtnText">Continue Play</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
