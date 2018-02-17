@@ -13,6 +13,8 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VideoPlayActivity extends AppCompatActivity {
 
@@ -31,6 +33,10 @@ public class VideoPlayActivity extends AppCompatActivity {
         if(videoView == null){
             Intent getIntent = getIntent();
             String file = getIntent.getStringExtra("url");
+            String folder = file.substring(0,file.lastIndexOf('/'));
+            Log.i("folder",folder);
+            File folderFile = new File(folder);
+            List<File> files = getFileList(folderFile);
             videoView = (VideoView)findViewById(R.id.video1);
             videoView.setVideoURI(Uri.parse(file));
             videoView.setMediaController(new MediaController(this));
@@ -46,5 +52,18 @@ public class VideoPlayActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt("currentPos",videoView.getCurrentPosition());
         super.onSaveInstanceState(outState);
+    }
+
+    public List<File> getFileList(File fileFolder){
+        File[] fileArray = fileFolder.listFiles();
+        List<File> fileList = new ArrayList<File>();
+        for(File f:fileArray){
+            Log.i("files",f.getPath());
+            if(f.isFile()) // it is a actually file
+                fileList.add(f);
+            else // it is a folder
+                getFileList(f);
+        }
+        return fileList;
     }
 }
