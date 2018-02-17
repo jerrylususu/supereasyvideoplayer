@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Super Easy Video Player</string>
-    <string name="ButtonText">btnText</string>
-    <string name="InputText">inpText</string>
+    <string name="ConfigBtnText">Config Video Path</string>
+    <string name="PathTextPlace">PlaceHolder</string>
+    <string name="PlayBtnText">Play</string>
 
-    <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
