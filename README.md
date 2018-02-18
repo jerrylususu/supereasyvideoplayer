@@ -9,9 +9,9 @@ A video player made for my grandpa. Easy for both youths to config and for senio
 
 ## Usage
 
-1. Get the release apk here and install.
+1. Get the release apk [here](https://github.com/jerrulususu/supereasyvideoplayer/releases) and install.
 2. Press "Config Video Path", and choose any video file on the directory storing the videos.
 3. Press "Play" and enjoy.
 
-## Troubleshoot
-"Can't open the video"(无法打开此视频): Use MP4 file format & check to make sure the storage permission is given (MIUI especially!)
+## Troubleshooting
+"Can't open the video"(无法打开此视频): Use MP4 as file format & check to make sure the storage permission is given (MIUI especially!)
