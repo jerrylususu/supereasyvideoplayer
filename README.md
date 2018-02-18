@@ -1,6 +1,8 @@
 # Super Easy Video Player (超简单视频播放器)
 
 A video player made for my grandpa. Easy for both youths to config and for seniors to use.
+Android Version Required: >= 4.0.3 (API Level >= 15)
+Language Supported: zh-CN, en
 
 ## Screenshot
 
@@ -19,4 +21,4 @@ A video player made for my grandpa. Easy for both youths to config and for senio
 
 ## Troubleshooting
 1. "Can't open the video"(无法打开此视频): Use MP4 as file format and check to make sure the storage permission is given (MIUI especially!)
-2. May jump back for a few seconds when restart the app or rotate the screen: That's the problem with VideoView.getCurrentPosition. May fix later.
+2. May jump back for a few seconds when restart the app or rotate the screen: That's the problem with VideoView.getCurrentPosition() method. May fix later.
