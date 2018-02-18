@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Super Easy Video Player</string>
 
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
 
     <!--ui-->
     <string name="ConfigBtnText">Config Video Path</string>
@@ -13,5 +13,6 @@
     <string name="MadeInfo">Made By Jerry Lu With ❤</string>
     <string name="NoPathTip">Path not set yet</string>
     <string name="PlayEndInfo">Play ended!</string>
+    <string name="ConfigPathTip">Choose any file in the video folder to config video path ( Subfolder not supported )</string>
 
 </resources>

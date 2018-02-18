@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">超简单视频播放器</string>
+    <string name="ConfigBtnText">配置视频文件夹地址</string>
+    <string name="PlaceHolder">占位符</string>
+    <string name="PlayBtnText">播放</string>
+    <string name="NoPathTip">路径未设定</string>
+    <string name="PlayEndInfo">全部播放完成！</string>
+    <string name="MadeInfo" translatable="false">Jerry Lu 制作</string>
+    <string name="ConfigPathTip">选择视频文件夹内的任意文件即可配置视频文件夹路径（不支持子文件夹）</string>
+</resources>

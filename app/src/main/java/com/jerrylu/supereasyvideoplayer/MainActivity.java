@@ -51,10 +51,11 @@ public class MainActivity extends AppCompatActivity {
         ConfigBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            Intent fileSelectIntent = new Intent(Intent.ACTION_GET_CONTENT);
-            fileSelectIntent.setType("*/*");
-            fileSelectIntent.addCategory(Intent.CATEGORY_OPENABLE);
-            startActivityForResult(fileSelectIntent,1);
+                Toast.makeText(MainActivity.this,getString(R.string.ConfigPathTip),Toast.LENGTH_LONG).show();
+                Intent fileSelectIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                fileSelectIntent.setType("*/*");
+                fileSelectIntent.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(fileSelectIntent,1);
             }
         });
 
