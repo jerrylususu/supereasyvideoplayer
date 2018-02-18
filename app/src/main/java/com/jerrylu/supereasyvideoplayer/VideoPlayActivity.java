@@ -50,6 +50,8 @@ public class VideoPlayActivity extends AppCompatActivity {
             }
 
             videoView.setVideoURI(Uri.parse(fileInFolder.get(0).getPath()));
+            editor.putString("currentFile",fileInFolder.get(0).getPath());
+            editor.commit();
 
             videoView.seekTo(previousPos);
 //            Log.i("previouspos",String.valueOf(previousPos));
