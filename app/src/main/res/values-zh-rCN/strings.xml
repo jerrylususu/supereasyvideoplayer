@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">超简单视频播放器</string>
-    <string name="ConfigBtnText">配置视频文件夹地址</string>
+    <string name="ConfigBtnText">选择视频文件夹</string>
     <string name="PlaceHolder">占位符</string>
     <string name="PlayBtnText">播放</string>
     <string name="NoPathTip">路径未设定</string>
