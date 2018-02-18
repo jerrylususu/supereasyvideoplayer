@@ -1,7 +1,9 @@
 # Super Easy Video Player (超简单视频播放器)
 
 A video player made for my grandpa. Easy for both youths to config and for seniors to use.
+
 Android Version Required: >= 4.0.3 (API Level >= 15)
+
 Language Supported: zh-CN, en
 
 ## Screenshot
