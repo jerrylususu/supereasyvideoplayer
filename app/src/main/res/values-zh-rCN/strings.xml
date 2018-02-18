@@ -6,6 +6,6 @@
     <string name="PlayBtnText">播放</string>
     <string name="NoPathTip">路径未设定</string>
     <string name="PlayEndInfo">全部播放完成！</string>
-    <string name="MadeInfo" translatable="false">Jerry Lu 制作</string>
+    <string name="MadeInfo">Jerry Lu 制作</string>
     <string name="ConfigPathTip">选择视频文件夹内的任意文件即可配置视频文件夹路径（不支持子文件夹）</string>
 </resources>

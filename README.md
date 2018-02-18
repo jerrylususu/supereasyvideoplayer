@@ -4,7 +4,7 @@ A video player made for my grandpa. Easy for both youths to config and for senio
 
 ## Screenshot
 
-Added from github later...
+![Screenshot.jpg](https://i.loli.net/2018/02/18/5a89158bd11f7.jpg)
 
 ## Feature
 
