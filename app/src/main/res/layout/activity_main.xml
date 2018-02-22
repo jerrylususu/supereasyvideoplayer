@@ -8,44 +8,55 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="2"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/MadeInfoTextWiew"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/MadeInfo" />
-
-        <Button
-            android:id="@+id/ConfigPathBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/ConfigBtnText" />
-
-        <TextView
-            android:id="@+id/PathTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/PlaceHolder" />
-
-        <TextView
-            android:id="@+id/PreviousFileTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PreviousFile" />
-
-        <TextView
-            android:id="@+id/PreviousPosTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:text="PreviousPos" />
 
         <Button
             android:id="@+id/PlayBtn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.2"
             android:text="@string/PlayBtnText" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.8"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/MadeInfoTextWiew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/MadeInfo" />
+
+            <Button
+                android:id="@+id/ConfigPathBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ConfigBtnText" />
+
+            <TextView
+                android:id="@+id/PathTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/PlaceHolder" />
+
+            <TextView
+                android:id="@+id/PreviousFileTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PreviousFile" />
+
+            <TextView
+                android:id="@+id/PreviousPosTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                tools:text="PreviousPos" />
+
+        </LinearLayout>
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
