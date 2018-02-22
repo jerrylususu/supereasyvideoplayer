@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         for(File f:fileArray){
             if(f.isFile()) // it is a actually file
                 fileList.add(f);
+//            Log.i("fileinfo",f.getPath().toString());
 //            else // it is a folder
 //                getFileList(f);
         }

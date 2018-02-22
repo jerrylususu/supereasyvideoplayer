@@ -14,5 +14,8 @@
     <string name="NoPathTip">Path not set yet</string>
     <string name="PlayEndInfo">Play ended!</string>
     <string name="ConfigPathTip">Choose any file in the video folder to config video path ( Subfolder not supported )</string>
+    <string name="title_activity_setting">Setting</string>
+    <string name="CurrentFile">Current File</string>
+    <string name="RemainingCount">Remaining</string>
 
 </resources>

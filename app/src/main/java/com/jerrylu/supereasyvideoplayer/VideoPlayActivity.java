@@ -63,6 +63,7 @@ public class VideoPlayActivity extends AppCompatActivity {
             videoView.seekTo(savedInstanceState.getInt("currentPos"));
         }
 
+        Toast.makeText(VideoPlayActivity.this,String.format("%s:%s\n%s:%d",getString(R.string.CurrentFile),fileInFolder.get(0).getPath(),getString(R.string.RemainingCount),fileInFolder.size()-1),Toast.LENGTH_SHORT).show();
         videoView.start();
 
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
