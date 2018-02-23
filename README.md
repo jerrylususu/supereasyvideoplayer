@@ -8,7 +8,7 @@ Language Supported: zh-CN, en
 
 ## Screenshot
 
-![Screenshot.jpg](https://i.loli.net/2018/02/18/5a89158bd11f7.jpg)
+![Screenshot.jpg](http://ww3.sinaimg.cn/large/0060lm7Tly1foqfe9o433j30db0m70t8.jpg)
 
 ## Feature
 
@@ -18,7 +18,7 @@ Language Supported: zh-CN, en
 ## Usage
 
 1. Get the newest release apk [here](https://github.com/jerrulususu/supereasyvideoplayer/releases) and install.
-2. Press "Config Video Path"(选择视频文件夹), and choose any video file on the directory storing the videos.
+2. Press the wrench icon on the top right corner, and choose any video file on the directory storing the videos.
 3. Press "Play"(播放) and enjoy.
 
 ## Troubleshooting
