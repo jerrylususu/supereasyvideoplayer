@@ -17,5 +17,10 @@
     <string name="title_activity_setting">Setting</string>
     <string name="CurrentFile">Current File</string>
     <string name="RemainingCount">Remaining</string>
+    <string name="DirText">Dir</string>
+    <string name="FileText">File</string>
+    <string name="CountText">Progress</string>
+    <string name="PlayTimeText">Time</string>
+    <string name="AboutButton">About</string>
 
 </resources>

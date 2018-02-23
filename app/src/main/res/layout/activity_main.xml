@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jerrylu.supereasyvideoplayer.MainActivity">
+    tools:context="com.jerrylu.supereasyvideoplayer.MainActivity"
+    android:theme="@style/AppTheme">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,18 +26,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/MadeInfoTextWiew"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/MadeInfo" />
-
-            <Button
-                android:id="@+id/ConfigPathBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ConfigBtnText" />
-
-            <TextView
                 android:id="@+id/PathTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,6 +36,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="PreviousFile" />
+
+            <TextView
+                android:id="@+id/CountTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
 
             <TextView
                 android:id="@+id/PreviousPosTextView"
