@@ -22,5 +22,11 @@
     <string name="CountText">Progress</string>
     <string name="PlayTimeText">Time</string>
     <string name="AboutButton">About</string>
+    <string name="PermissionAlertTitle">Storage Permission not given</string>
+    <string name="PermissionAlertMessage">This app needs your permission to read video files stored on your phone\'s storage space. You can also manually grant permission in your phone\'s setting later.</string>
+    <string name="PermissionAlertTipsY">Grant Permission</string>
+    <string name="PermissionAlertTipsN">Reject and Exit</string>
+    <string name="PermissionFailed">Unable to grant permission. Press Play will exit the program.</string>
+    <string name="PermissionSucceed">Permission granted.</string>
 
 </resources>

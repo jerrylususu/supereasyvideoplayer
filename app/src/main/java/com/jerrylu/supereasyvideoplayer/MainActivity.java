@@ -1,13 +1,21 @@
 package com.jerrylu.supereasyvideoplayer;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -36,11 +44,19 @@ public class MainActivity extends AppCompatActivity {
     private Button ConfigBtn;
     private Button PlayBtn;
 
+    private String[] Permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_main);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            int i = ContextCompat.checkSelfPermission(this,Permissions[0]);
+            if (i!= PackageManager.PERMISSION_GRANTED)
+                showPermissionDialog();
+        }
 
         settings = getSharedPreferences("setting", Context.MODE_PRIVATE);
         PathTextView = (TextView)findViewById(R.id.PathTextView);
@@ -116,7 +132,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<File> getFileList(File fileFolder){
+        Log.i("fileinfo",fileFolder.getPath());
         File[] fileArray = fileFolder.listFiles();
+        Log.i("fileinfo",fileArray.toString());
         List<File> fileList = new ArrayList<File>();
         for(File f:fileArray){
             if(f.isFile() && (f.getPath().endsWith("mp4") || f.getPath().endsWith("flv"))) // it is a actually file and format is correct
@@ -155,5 +173,39 @@ public class MainActivity extends AppCompatActivity {
                 return i+1;
         }
         return 1;
+    }
+
+    private void showPermissionDialog(){
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.PermissionAlertTitle))
+                .setMessage(getString(R.string.PermissionAlertMessage))
+                .setPositiveButton(getString(R.string.PermissionAlertTipsY), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startRequestPermission();
+                    }
+                })
+                .setNegativeButton(getString(R.string.PermissionAlertTipsN), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(MainActivity.this,getString(R.string.PermissionFailed),Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+    }
+
+    private void startRequestPermission(){
+        ActivityCompat.requestPermissions(this,Permissions,233);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        if(requestCode == 233){
+            Toast.makeText(MainActivity.this,getString(R.string.PermissionSucceed),Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(MainActivity.this,getString(R.string.PermissionFailed),Toast.LENGTH_SHORT).show();
+        }
     }
 }

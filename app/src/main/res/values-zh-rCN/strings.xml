@@ -16,4 +16,10 @@
     <string name="CountText">进度</string>
     <string name="PlayTimeText">当前位置</string>
     <string name="AboutButton">关于</string>
+    <string name="PermissionAlertTitle">无权限访问存储</string>
+    <string name="PermissionAlertMessage">需要权限访问存储空间来正常播放视频。\n你也可以稍后在设置—应用管理中手动开启权限。</string>
+    <string name="PermissionAlertTipsY">立即开启</string>
+    <string name="PermissionAlertTipsN">拒绝并退出</string>
+    <string name="PermissionFailed">权限获取失败。按“播放”将闪退。</string>
+    <string name="PermissionSucceed">权限获取成功</string>
 </resources>
