@@ -10,7 +10,7 @@
     <string name="PlayBtnText">Play</string>
 
     <!--tips & info-->
-    <string name="MadeInfo">Made By Jerry Lu With ❤\njerrylususu @ Github</string>
+    <string name="MadeInfo">Made By Jerry Lu With ❤\njerrylususu @ Github\nSuperEasyVideoPlayer Project</string>
     <string name="NoPathTip">Path not set yet</string>
     <string name="PlayEndInfo">Play ended!</string>
     <string name="ConfigPathTip">Choose any file in the video folder to config video path ( Subfolder not supported )</string>
