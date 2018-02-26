@@ -17,7 +17,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -132,9 +131,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public List<File> getFileList(File fileFolder){
-        Log.i("fileinfo",fileFolder.getPath());
+//        Log.i("fileinfo",fileFolder.getPath());
         File[] fileArray = fileFolder.listFiles();
-        Log.i("fileinfo",fileArray.toString());
+//        Log.i("fileinfo",fileArray.toString());
         List<File> fileList = new ArrayList<File>();
         for(File f:fileArray){
             if(f.isFile() && (f.getPath().endsWith("mp4") || f.getPath().endsWith("flv"))) // it is a actually file and format is correct
@@ -168,9 +167,9 @@ public class MainActivity extends AppCompatActivity {
 
     private static int revealPlayCount(List<File> fileInFolder,File file){
         for(int i=0;i<fileInFolder.size();i++){
-            if(fileInFolder.get(i).getPath().equals(file.getPath()))
-                Log.i("fileinfo",String.valueOf(i));
+            if(fileInFolder.get(i).getPath().equals(file.getPath())){
                 return i+1;
+            }
         }
         return 1;
     }
